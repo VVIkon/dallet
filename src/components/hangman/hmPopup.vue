@@ -8,7 +8,11 @@
   const newStart = () => {
     emit('new-start', { fetchName: true });
   };
-
+  window.addEventListener('keydown', ({key}) => {
+    if(key === 'Enter') {
+      newStart();
+    }
+  });
 </script>
 <template>
 <div class="popup-container">
