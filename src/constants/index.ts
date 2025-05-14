@@ -1,2 +1,2 @@
-// export * from './api'
-export { ROUTES_PATHS } from './router'
+export { API_PATHS } from './apiPath'
+export { ROUTES_PATHS } from './routerPath'

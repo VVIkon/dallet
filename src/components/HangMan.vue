@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import '../assets/hangman.css'
+import { ref } from 'vue';
+import '@/assets/hangman.css'
 import hmHeader from './hangman/hmHeader.vue';
 import hmMan from './hangman/hmMan.vue';
 import hmWrongLetter from './hangman/hmWrongLetter.vue';
 import hmWord from './hangman/hmWord.vue';
 import hmPopup from './hangman/hmPopup.vue';
 import hmNotification from './hangman/hmNotification.vue';
-import { ref } from 'vue';
 import { useRandomWord } from './hangman/composables/useRandomWord';
 import { useLetters } from './hangman/composables/useLetters';
 
@@ -60,4 +60,5 @@ const newStart = ((msg: { fetchName: boolean }) =>{
     msg="Вы уже вводили этот символ"
   />
 </template>
+
 

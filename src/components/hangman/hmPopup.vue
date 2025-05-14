@@ -22,7 +22,7 @@
       <h2>Вы проиграли. 😕</h2>
       <h3>...имя: {{ nameGame }}</h3>
     </template>
-    <button @click="newStart()">Сыграть еще раз (Enter)</button>
+    <button @click = "newStart()">Сыграть еще раз (Enter)</button>
   </div>
 </div>
 </template>

@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import HangMan from '@/components/HangMan.vue'
+import Cocktail from '@/components/CockTail.vue'
 </script>
 
 <template>
   <main>
-    <HangMan />
+    <Cocktail />
   </main>
 </template>
