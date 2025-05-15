@@ -70,7 +70,8 @@ h1 {
 
 .letter {
   border-bottom: 3px solid #54bc6c;
-  display: inline-flex;
+  display: flex;
+  /* display: inline-flex; */
   font-size: 30px;
   align-items: center;
   justify-content: center;

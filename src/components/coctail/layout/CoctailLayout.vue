@@ -1,39 +1,18 @@
 <script setup lang="ts">
-import { computed } from "vue";
-import { useRoute, useRouter } from "vue-router";
 import { Back } from "@element-plus/icons-vue";
-import { ROUTES_PATHS } from "@/constants";
+import { useCocktails } from '../composable/useCocktails';
+import { useRouts } from '../composable/useRouts';
 
 defineProps({
   imgUrl: {
     type: String,
     required: true,
-  },
-  backFunc: {
-    type: Function,
-  },
-  isBackButtonVisible: {
-    type: Boolean,
-    default: true,
-  },
-});
-
-const route = useRoute();
-const router = useRouter();
-
-const routeName = computed(() => route.name);
-
-function goForCocktailRandom() {
-  router.push(ROUTES_PATHS.COCKTAIL_RANDOM);
-
-  if (routeName.value === ROUTES_PATHS.COCKTAIL_RANDOM) {
-    router.go(-1);
+    default: "/img/bg-1.jpg"
   }
-}
+})
 
-function goBack() {
-  // props.backFunc ? props.backFunc() : router.go(-1);
-}
+const { isBackButtonVisible } = useCocktails();
+const { goForCocktailRandom, goBack } = useRouts();
 </script>
 
 <template>
@@ -49,9 +28,7 @@ function goBack() {
           class="back"
           @click="goBack"
         />
-        <el-button class="btn" @click="goForCocktailRandom"
-          >Get random cocktail</el-button
-        >
+        <el-button class="btn" @click="goForCocktailRandom"> Случайный коклейль </el-button>
       </div>
       <slot></slot>
     </div>
@@ -73,7 +50,7 @@ function goBack() {
 
 .main
   position: relative
-  width: 50%
+  width: 70%
   padding: 32px 40px
 
 .btn
@@ -88,8 +65,8 @@ function goBack() {
 
   &:hover,
   &:active
-    background-color: darken(#FF0F82, 10%)
-    border-color: darken(#FF0F82, 10%)
+    background-color: #FF0F82, 10%
+    border-color: #FF0F82, 10%
 
 .btns
   display: flex
