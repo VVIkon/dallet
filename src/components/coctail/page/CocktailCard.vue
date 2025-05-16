@@ -28,7 +28,7 @@ if (cocktailId.value)
             >
               {{ item.name }}
               <template v-if="item.measure">
-                |
+                -
                 {{ item.measure }}
               </template>
             </div>

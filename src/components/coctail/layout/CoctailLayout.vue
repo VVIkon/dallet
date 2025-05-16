@@ -16,6 +16,7 @@ const { goForCocktailRandom, goBack } = useRouts();
 </script>
 
 <template>
+<main>
   <div class="root">
     <div :style="`background-image: url(${imgUrl})`" class="img"></div>
     <div class="main">
@@ -33,6 +34,7 @@ const { goForCocktailRandom, goBack } = useRouts();
       <slot></slot>
     </div>
   </div>
+</main>
 </template>
 
 <style lang="sass" scoped>

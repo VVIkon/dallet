@@ -9,7 +9,7 @@ const { ingredients, component, cocktails, getCocktails } = useCocktails();
 </script>
 
 <template>
-<main>
+
   <CoctailLayout
     imgUrl="/img/bg-1.jpg"
   >
@@ -54,7 +54,6 @@ const { ingredients, component, cocktails, getCocktails } = useCocktails();
       </div>
     </div>
   </CoctailLayout>
-</main>
 </template>
 
 <style lang="sass" scoped>

@@ -10,6 +10,8 @@ export const useRouts = () => {
   const routeName = computed(() => route.name);
 
   const goForCocktailRandom = () => {
+    console.log('>>> routeName.value:', routeName.value);
+
     router.push(ROUTES_PATHS.COCKTAIL_RANDOM);
     if (routeName.value === ROUTES_PATHS.COCKTAIL_RANDOM) {
       router.go(-1);
@@ -17,11 +19,12 @@ export const useRouts = () => {
   }
 
   const goBack = () => {
+    console.log('>>> component: ', component);
+
     if (component) {
       removeIngredient()
-    } else {
-        router.go(-1)
     }
+    router.go(-1)
   }
 
   const cocktailId = computed(() => route.path.split("/").pop());
