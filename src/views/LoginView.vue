@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import HangMan from '@/module/HangMan.vue'
+import AuthLogin from '../module/AuthLogin.vue'
 </script>
 
 <template>
   <main>
-    <HangMan />
+    <AuthLogin />
   </main>
 </template>

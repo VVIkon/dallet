@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Cocktail from '@/components/coctail/page/CockTail.vue'
+import Cocktail from '@/module/coctail/page/CockTail.vue'
 </script>
 
 <template>

@@ -6,7 +6,12 @@ defineProps<{
 </script>
 
 <template>
-  <div class="greetings">
+  <el-page-header >
+    <template #content>
+      <span class="text-large font-600 mr-3"> {{ msg }} </span>
+    </template>
+  </el-page-header>
+  <!-- <div class="greetings">
     <h1 class="green">{{ msg }}</h1>
     <h3>
       Тестовый проект
@@ -17,11 +22,11 @@ defineProps<{
       </span>
     </div>
 
-  </div>
+  </div> -->
 </template>
 
 <style scoped>
-h1 {
+/* h1 {
   font-weight: 500;
   font-size: 2.6rem;
   position: relative;
@@ -42,5 +47,5 @@ h3 {
   .greetings h3 {
     text-align: left;
   }
-}
+} */
 </style>
