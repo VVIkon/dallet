@@ -7,7 +7,6 @@ export const useCocktails = () => {
   getIngredients();
   const { ingredients, component, cocktails, cocktail } = storeToRefs(cocktailStore);
 
-
   const getCocktails = () => {
     getCocktailsByIngradient(component.value);
   }

@@ -36,3 +36,12 @@ export function uuid(length = 32) {
   }
   return str
 }
+
+export function decode(url: string): string {
+    return decodeURIComponent(decodeURIComponent(url))
+}
+
+export function encode(url: string): string {
+    return encodeURIComponent(encodeURIComponent(url))
+}
+

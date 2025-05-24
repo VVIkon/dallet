@@ -1,14 +1,17 @@
 <script setup lang="ts">
+import { useAuth } from './auth/composable/useAuth';
 defineProps<{
   msg: string;
   desc: string;
 }>()
+
+const { state } = useAuth();
 </script>
 
 <template>
   <el-page-header >
     <template #content>
-      <span class="text-large font-600 mr-3"> {{ msg }} </span>
+      <span class="text-large font-600 mr-3"> {{ msg }} {{ state?.authUser?.fio  || ' - ' }}</span>
     </template>
   </el-page-header>
   <!-- <div class="greetings">

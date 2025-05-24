@@ -57,14 +57,14 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const { authState } = useAuth();
-  const isAuthenticated = !!localStorage.getItem('token')
+  // const { isAuthenticated } = useAuth();
+  const { isTokenated } = useAuth();
   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth)
 
-  if (requiresAuth && !isAuthenticated) {
-    console.log('>>> requiresAuth: ', requiresAuth);
-    console.log('>>> isAuthenticated: ', isAuthenticated);
-    console.log('>>> authState: ', authState);
+  // console.log('>>> 00 isAuthenticated: ', isAuthenticated.value);
+  if (requiresAuth && !isTokenated.value) {
+    // console.log('>>> requiresAuth: ', requiresAuth);
+    // console.log('>>> authState: ', authState);
      next(ROUTES_PATHS.LOGIN)
   } else {
     next()

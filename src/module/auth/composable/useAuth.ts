@@ -1,19 +1,19 @@
 import { computed } from 'vue'
-import { useAuthStore } from '@/stores/authStore';
+import { useAuthStore } from '@/stores/authStore'
+import { storeToRefs } from 'pinia';
 
 export const useAuth = () => {
   const authStore = useAuthStore();
-    const { status, role, getToken} = authStore;
-    const authState = computed(() => {
-      return {
-        status: status,
-        role: role
-      }
-    })
+  const { getAccessToken, getProfile} = authStore;
+  const { state, getToken, getStatus } = storeToRefs(authStore);
+  const isTokenated = computed(() => !!getToken.value);
+  const isAuthenticated = computed(() => (getStatus.value === 'got_user') );
 
-
-    return {
-      authState: authState.value,
-      getToken,
-    }
+  return {
+    state,
+    isTokenated,
+    isAuthenticated,
+    getAccessToken,
+    getProfile,
+  }
 }

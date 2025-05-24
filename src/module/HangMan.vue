@@ -34,31 +34,44 @@ const newStart = ((msg: { fetchName: boolean }) =>{
 })
 </script>
 <template>
-  <hmHeader
-    hStr='Висельница'
-    pStr='Отгадайте имя - введите букву (Русскую)'
-  />
-  <div class="game-container">
-    <hmMan
-      :try-cnt="wrongLetters.length"
-    />
-    <hmWrongLetter
-      :wrong-letters="wrongLetters"
-    />
-    <hmWord
-      :word="word"
-      :correct-letters="correctLetters"
-    />
+  <div class="hangman-container">
+    <el-row>
+      <el-col :xs="2" :sm="4" :md="7" :lg="6"  :xl="8" >
+        <div style="color: transparent"></div>
+      </el-col>
+      <el-col :xs="20" :sm="16" :md="14" :lg="12"  :xl="8" >
+        <hmHeader
+          hStr='Висельница'
+          pStr='Отгадайте имя - введите букву (Русскую)'
+        />
+        <div class="game-container">
+          <hmMan
+            :try-cnt="wrongLetters.length"
+          />
+          <hmWrongLetter
+            :wrong-letters="wrongLetters"
+          />
+          <hmWord
+            :word="word"
+            :correct-letters="correctLetters"
+          />
+        </div>
+        <hmPopup v-if="winGame || loseGame"
+          :is-win="winGame"
+          :name-game="word"
+          @new-start="newStart"
+        />
+        <hmNotification
+          ref="notification"
+          msg="Вы уже вводили этот символ"
+        />
+      </el-col>
+      <el-col :xs="2" :sm="4" :md="7" :lg="6"  :xl="8" >
+        <div style="color: transparent"></div>
+      </el-col>
+
+    </el-row>
   </div>
-  <hmPopup v-if="winGame || loseGame"
-    :is-win="winGame"
-    :name-game="word"
-    @new-start="newStart"
-  />
-  <hmNotification
-    ref="notification"
-    msg="Вы уже вводили этот символ"
-  />
 </template>
 
 

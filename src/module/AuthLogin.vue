@@ -5,15 +5,16 @@ import { User, Lock } from '@element-plus/icons-vue'
 import { useAuth } from './auth/composable/useAuth';
 import { useRouter } from "vue-router";
 
+const IsDealogVisible = true;
 const ruleFormRef = ref<FormInstance>()
-const { getToken } = useAuth();
- const router = useRouter();
+const { getAccessToken, isTokenated } = useAuth();
+const router = useRouter();
 
 const validateName = (rule: any, value: any, callback: any) => {
   if (value === '') {
-    callback(new Error('Введите логин или email (> 5 букв)'))
-  } else if ([...value].length <= 5) {
-    callback(new Error(" Логин должен быть больше 5 букв"))
+    callback(new Error('Введите логин или email (> 4 букв)'))
+  } else if ([...value].length <= 4) {
+    callback(new Error(" Логин должен быть больше 4 букв"))
   } else {
       if (!ruleFormRef.value) return;
       // ruleFormRef.value.validateField('name');
@@ -43,32 +44,42 @@ const rules = reactive<FormRules<typeof ruleForm>>({
   pass: [{ validator: validatePass, trigger: 'blur' }],
 })
 
-const submitForm = (formEl: FormInstance | undefined) => {
+const submitForm = async (formEl: FormInstance | undefined) => {
   const  { name, pass } = ruleForm;
   if (!formEl) return
-  formEl.validate((valid) => {
+  formEl.validate(async(valid) => {
     if (valid) {
-      getToken(name, pass);
-      console.log('submit!')
-      router.push("/");
+      await getAccessToken(name, pass);
+      if (isTokenated.value) {
+         router.push('/').catch(() => {})
+      }
     } else {
       console.log('error submit!')
     }
   })
 }
+const handleClose = (done: any) => {
+  done();
+}
 </script>
 
 <template>
-   <div class="login-container">
+   <!-- <div class="login-container">
     <el-row>
       <el-col :xs="2" :sm="4" :md="7" :lg="6"  :xl="8" >
         <div style="color: transparent">Регистрация</div>
       </el-col>
       <el-col :xs="20" :sm="16" :md="14" :lg="12"  :xl="8" >
-        <div class="login-form">
+        <div class="login-form"> -->
+        <el-dialog
+          v-model="IsDealogVisible"
+          title="Регистрация"
+          width="30%"
+          :before-close="handleClose"
+        >
           <el-form
             ref="ruleFormRef"
-            style="max-width: 600px"
+            style="max-width: 600px; width: 100%"
             :model="ruleForm"
             status-icon
             :rules="rules"
@@ -82,17 +93,17 @@ const submitForm = (formEl: FormInstance | undefined) => {
               <el-input v-model="ruleForm.pass" type="password" autocomplete="off" placeholder="Пароль" show-password :prefix-icon="Lock"/>
             </el-form-item>
             <el-form-item>
-              <el-button type="primary" @click="submitForm(ruleFormRef)">Вход</el-button>
+              <el-button type="primary" @click.stop="submitForm(ruleFormRef)">Вход</el-button>
             </el-form-item>
           </el-form>
-        </div>
-      </el-col>
+        </el-dialog>
+        <!-- </div> -->
+      <!-- </el-col>
       <el-col :xs="2" :sm="4" :md="7" :lg="6"  :xl="8" >
         <div style="color: transparent"></div>
       </el-col>
-
     </el-row>
-  </div>
+  </div> -->
 </template>
 
 <style lang="scss" scoped>
