@@ -3,9 +3,13 @@ import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
 
 const activeIndex = ref('1')
-const handleSelect = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-}
+// const route = useRoute()
+// const handleSelect = (key: string, keyPath: string[]) => {
+// const handleSelect = () => {
+//   console.log('>>> route.meta.requiresAuth: ', route.meta.requiresAuth);
+//   console.log(key, keyPath)
+// }
+
 </script>
 
 <template>
@@ -14,10 +18,9 @@ const handleSelect = (key: string, keyPath: string[]) => {
     class="el-menu-demo"
     mode="horizontal"
     :ellipsis="false"
-    @select="handleSelect"
   >
+    <!-- @select="handleSelect" -->
     <el-menu-item index="0">
-
       <RouterLink to="/">Home</RouterLink>
     </el-menu-item>
     <el-sub-menu index="1">
@@ -32,7 +35,10 @@ const handleSelect = (key: string, keyPath: string[]) => {
         <RouterLink to="/about">About</RouterLink>
       </el-menu-item>
     </el-sub-menu>
-  </el-menu>
+    <el-menu-item index="1-5">
+      <RouterLink to="/messendo">MesSendo</RouterLink>
+    </el-menu-item>
+</el-menu>
 </template>
 
 <style scoped>

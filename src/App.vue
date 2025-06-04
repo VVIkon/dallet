@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
-import MainHeader from '@/module/MainHeader.vue'
-import MainMenu from '@/module/MainMenu.vue'
+import MainHeader from '@/module/MainHeader.vue';
 
 </script>
 
@@ -10,9 +9,8 @@ import MainMenu from '@/module/MainMenu.vue'
     <div class="common-layout">
       <el-container>
         <el-header>
-          <div class="wrapper">
+          <div class="wrapper2">
             <MainHeader msg="Проект Dallet" desc="Проект предназначен для отработки навыков во vue3" />
-            <MainMenu />
           </div>
         </el-header>
         <el-main>
@@ -25,5 +23,7 @@ import MainMenu from '@/module/MainMenu.vue'
 </template>
 
 <style scoped>
-
+.el-main {
+  margin-top:50px;
+}
 </style>

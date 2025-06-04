@@ -5,7 +5,7 @@ import axios from 'axios'
 import { AUTH_PATHS } from '@/constants'
 import Cookies from 'js-cookie';
 
-interface IAuthUser {
+export interface IAuthUser {
   userId: number;
   email: string;
   roles: string[],
@@ -28,8 +28,9 @@ export const useAuthStore = defineStore('auth', () => {
     authUser: null,
   })
 
-  const getStatus = computed(() => state.status);
-  const getRole = computed(() => state.role);
+  // const getStatus = computed(() => state.status);
+  // const getAuthUser = computed(() => state.authUser);
+  // const getRole = computed(() => state.role);
   const getToken = computed(() => {
     state.token = Cookies.get('token');
     return state.token;
@@ -38,14 +39,14 @@ export const useAuthStore = defineStore('auth', () => {
   async function getAccessToken(name: string, pass: string) {
     try {
       const data = await axios.post(AUTH_PATHS.AUTH_URL, { name, pass })
-      const accessToken = data?.data?.access_token
-      if (accessToken) {
+      const { access_token, expires } = data?.data
+      if (access_token && expires) {
         state.status = 'got_token';
-        state.token = accessToken;
-        Cookies.set('token', accessToken, { expires: 1 });
+        state.token = access_token;
+        Cookies.set('token', access_token, { expires: Number(expires) });
       }
     } catch (error) {
-      console.error(error)
+      console.error('getAccessToken Error: ', error)
       throw error
     }
   }
@@ -59,6 +60,7 @@ export const useAuthStore = defineStore('auth', () => {
           Authorization: `Bearer ${token.value}`,
         },
       })
+      // console.log('>>> getProfile.data: ', data)
       if (data) {
         state.status = 'got_user';
         state.authUser = data;
@@ -69,11 +71,14 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
+  // const getAuthUser = () => state.authUser;
+
   // console.log('>>> 2. state.status:', state.status);
   return {
     state,
-    getStatus,
-    getRole,
+    // getStatus,
+    // getAuthUser,
+    // getRole,
     getToken,
     getAccessToken,
     getProfile,

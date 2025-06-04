@@ -7,6 +7,7 @@ import CockTailCard from '../module/coctail/page/CocktailCard.vue'
 import CocktailRandom from '../module/coctail/page/CocktailRandom.vue'
 import { ROUTES_PATHS } from '@/constants'
 import { useAuth } from '@/module/auth/composable/useAuth';
+import MesSendo from '@/module/MesSendo.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,7 +16,7 @@ const router = createRouter({
       path: ROUTES_PATHS.HOME,
       name: ROUTES_PATHS.HOME,
       component: HomeView,
-      meta: { requiresAuth: true }
+      meta: { requiresAuth: false }
     },
     {
       path: ROUTES_PATHS.LOGIN,
@@ -48,6 +49,12 @@ const router = createRouter({
       meta: { requiresAuth: false}
     },
     {
+      path: ROUTES_PATHS.MSG,
+      name: ROUTES_PATHS.MSG,
+      component: MesSendo,
+      meta: { requiresAuth: true}
+    },
+    {
       path: ROUTES_PATHS.ABOUT,
       name: ROUTES_PATHS.ABOUT,
       component: () => import('../views/AboutView.vue'),
@@ -57,7 +64,6 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  // const { isAuthenticated } = useAuth();
   const { isTokenated } = useAuth();
   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth)
 

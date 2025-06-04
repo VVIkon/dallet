@@ -1,12 +1,6 @@
 <script setup lang="ts">
 import WelcomeItem from './WelcomeItem.vue'
 import DocumentationIcon from './icons/IconDocumentation.vue'
-import { useAuth } from './auth/composable/useAuth';
-
-const {  getProfile, isTokenated } = useAuth();
-if (isTokenated.value) {
-  getProfile();
-}
 </script>
 
 <template>
