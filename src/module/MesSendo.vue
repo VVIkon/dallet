@@ -107,10 +107,12 @@ onBeforeUnmount(() => {
 .right-msg {
   text-align: right;
   color:blue;
+  margin-right: 5px;
 }
 .left-msg {
   text-align: left;
   color:green;
+  margin-left: 5px;
 }
 .error-msg {
   text-align: center;
